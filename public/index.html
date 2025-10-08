@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple To-Do List App</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📝 Simple To-Do List</h1>
+            <p>Kelola tugas harian Anda dengan mudah sekali</p>
+        </header>
+
+        <main>
+            <!-- Add Task Form -->
+            <section class="add-task-section">
+                <form id="taskForm" class="task-form">
+                    <div class="form-group">
+                        <input 
+                            type="text" 
+                            id="taskTitle" 
+                            placeholder="Masukkan judul tugas..." 
+                            required
+                            maxlength="255"
+                        >
+                    </div>
+                    <div class="form-group">
+                        <textarea 
+                            id="taskDescription" 
+                            placeholder="Deskripsi tugas (opsional)..."
+                            rows="3"
+                        ></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">
+                        <span class="btn-text">Tambah Tugas</span>
+                        <span class="btn-loading" style="display: none;">Menambahkan...</span>
+                    </button>
+                </form>
+            </section>
+
+            <!-- Filter Section -->
+            <section class="filter-section">
+                <div class="filter-buttons">
+                    <button class="filter-btn active" data-filter="all">Semua</button>
+                    <button class="filter-btn" data-filter="pending">Belum Selesai</button>
+                    <button class="filter-btn" data-filter="completed">Selesai</button>
+                </div>
+                <div class="search-box">
+                    <input type="text" id="searchInput" placeholder="Cari tugas...">
+                </div>
+            </section>
+
+            <!-- Tasks List -->
+            <section class="tasks-section">
+                <div id="tasksContainer" class="tasks-container">
+                    <div class="loading" id="loadingSpinner">Memuat tugas...</div>
+                    <div class="empty-state" id="emptyState" style="display: none;">
+                        <p>Belum ada tugas. Tambahkan tugas pertama Anda!</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Edit Modal -->
+        <div id="editModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Edit Tugas</h3>
+                    <span class="close">&times;</span>
+                </div>
+                <form id="editTaskForm">
+                    <div class="form-group">
+                        <label for="editTaskTitle">Judul:</label>
+                        <input type="text" id="editTaskTitle" required maxlength="255">
+                    </div>
+                    <div class="form-group">
+                        <label for="editTaskDescription">Deskripsi:</label>
+                        <textarea id="editTaskDescription" rows="3"></textarea>
+                    </div>
+                    <div class="modal-actions">
+                        <button type="button" class="btn btn-secondary" id="cancelEdit">Batal</button>
+                        <button type="submit" class="btn btn-primary">Simpan</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Delete Confirmation Modal -->
+        <div id="deleteModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Konfirmasi Hapus</h3>
+                    <span class="close">&times;</span>
+                </div>
+                <p>Apakah Anda yakin ingin menghapus tugas ini?</p>
+                <div class="modal-actions">
+                    <button type="button" class="btn btn-secondary" id="cancelDelete">Batal</button>
+                    <button type="button" class="btn btn-danger" id="confirmDelete">Hapus</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
